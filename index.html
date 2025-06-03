@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Перенаправление в Telegram…</title>
+  <script>
+    // 1. Сразу пробуем открыть нативный Telegram (deep link)
+    window.location.href = "tg://resolve?domain=di_radgabova";
+
+    // 2. Если через 1.5 секунды deep link не сработал (Telegram не установлен или WebView блокирует),
+    //    перенаправляем пользователя на веб-версию:
+    setTimeout(function() {
+      window.location.href = "https://t.me/di_radgabova";
+    }, 1500);
+  </script>
+</head>
+<body>
+  <p style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+    Если Telegram не открылся автоматически,<br>
+    <a href="https://t.me/di_radgabova" target="_blank">нажмите здесь, чтобы перейти в веб-версию</a>.
+  </p>
+</body>
+</html>
