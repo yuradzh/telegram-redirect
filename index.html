@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <title>Переход в Telegram...</title>
+  <meta charset="UTF-8">
+  <title>Открыть Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    // Попытка открыть Telegram через deep-link
-    window.location.href = "tg://resolve?domain=di_radgabova";
 
-    // Если Telegram не открылся — через 1.5 сек перебросим на веб-версию
-    setTimeout(function () {
-      window.location.href = "https://t.me/di_radgabova";
-    }, 1500);
-  </script>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       text-align: center;
-      padding: 40px;
-      background: #f9f9f9;
+      padding: 50px 20px;
     }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-    a.button {
+
+    .btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      font-size: 16px;
-      background: #0088cc;
+      padding: 14px 24px;
+      font-size: 18px;
+      background-color: #0088cc;
       color: white;
-      border-radius: 6px;
       text-decoration: none;
+      border-radius: 8px;
+      margin-top: 30px;
     }
-    .tip {
-      margin-top: 40px;
+
+    .note {
+      margin-top: 30px;
       font-size: 16px;
-      color: #333;
-      line-height: 1.5em;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #444;
     }
   </style>
 </head>
 <body>
-  <h1>Если Telegram не открылся автоматически</h1>
-  <a class="button" href="https://t.me/di_radgabova" target="_blank">Открыть вручную</a>
 
-  <div class="tip">
-    📱 <strong>Если вы открыли эту ссылку из TikTok:</strong><br>
-    Нажмите <strong>⋮</strong> (три точки) в верхнем правом углу и выберите<br>
-    <strong>«Открыть в браузере»</strong>, чтобы попасть в Telegram
+  <h1>Открыть Telegram</h1>
+  <a class="btn" href="https://t.me/di_radgabova" id="externalLink">Перейти в Telegram</a>
+
+  <div class="note">
+    Если ссылка не открылась в приложении,<br>
+    нажмите <b>⋮</b> → <b>«Открыть в браузере»</b>
   </div>
+
+  <script>
+    // Попробуем открыть внешнее приложение через "intent://" (только Android)
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    document.getElementById("externalLink").addEventListener("click", function (e) {
+      if (isAndroid) {
+        e.preventDefault();
+        window.location = "intent://t.me/di_radgabova#Intent;package=org.telegram.messenger;scheme=https;end";
+      }
+      // На iOS просто перейдёт по обычной ссылке — это максимум, что можно
+    });
+  </script>
+
 </body>
 </html>
