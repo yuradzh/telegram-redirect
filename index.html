@@ -2,22 +2,57 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <title>Перенаправление в Telegram…</title>
+  <title>Переход в Telegram...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    // 1. Сразу пробуем открыть нативный Telegram (deep link)
+    // Попытка открыть Telegram через deep-link
     window.location.href = "tg://resolve?domain=di_radgabova";
 
-    // 2. Если через 1.5 секунды deep link не сработал (Telegram не установлен или WebView блокирует),
-    //    перенаправляем пользователя на веб-версию:
-    setTimeout(function() {
+    // Если Telegram не открылся — через 1.5 сек перебросим на веб-версию
+    setTimeout(function () {
       window.location.href = "https://t.me/di_radgabova";
     }, 1500);
   </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #f9f9f9;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #0088cc;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .tip {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.5em;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
-  <p style="text-align: center; margin-top: 50px; font-family: sans-serif;">
-    Если Telegram не открылся автоматически,<br>
-    <a href="https://t.me/di_radgabova" target="_blank">нажмите здесь, чтобы перейти в веб-версию</a>.
-  </p>
+  <h1>Если Telegram не открылся автоматически</h1>
+  <a class="button" href="https://t.me/di_radgabova" target="_blank">Открыть вручную</a>
+
+  <div class="tip">
+    📱 <strong>Если вы открыли эту ссылку из TikTok:</strong><br>
+    Нажмите <strong>⋮</strong> (три точки) в верхнем правом углу и выберите<br>
+    <strong>«Открыть в браузере»</strong>, чтобы попасть в Telegram
+  </div>
 </body>
 </html>
